@@ -19,7 +19,7 @@ def bfs(m, n, box):
         ny = y + dy[i]
 
         if 0 <= nx < n and 0 <= ny < m and box[nx][ny] == 0:
-          box[nx][ny] = box[x][y] = 1
+          box[nx][ny] = 1
           ripe.append([nx, ny])
   
   for b in box:
@@ -27,15 +27,16 @@ def bfs(m, n, box):
       return -1
   return days
 
-
 m, n = map(int, read().split())
 box, ripe = [], deque()
+
 for i in range(n):
   row = list(map(int, read().split()))
+  box.append(row)
   for j in range(m):
     if row[j] == 1:
       ripe.append([i, j])
-  box.append(row)
+ 
 
 print(bfs(m, n, box))
           
