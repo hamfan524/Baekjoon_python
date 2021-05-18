@@ -14,7 +14,6 @@ def dfs(x, y):
 
 t = int(read())
 
-
 for _ in range(t):
   m, n, k = map(int,read().split())
   field = list([0] * m for _ in range(n))
