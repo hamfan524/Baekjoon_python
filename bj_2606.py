@@ -1,5 +1,20 @@
-from sys import stdin
-read = stdin.readline
+from collections import deque
+import sys
+read = sys.stdin.readline
+
+def bfs(start, dic):
+  q = deque()
+  q.append(start)
+
+  while q:
+    start = q.popleft()
+    for i in dic[start]:
+      if i not in visited:
+        visited.append(i)
+        q.append(i)
+
+  return len(visited) - 1
+
 dic = {}
 visited = []
 
@@ -10,13 +25,5 @@ for _ in range(int(read())):
   dic[a].add(b)
   dic[b].add(a)
 
-def bfs(start, dic):
-  queue = [start]
-  while queue:
-    for i in dic[queue.pop()]:
-      if i not in visited:
-        visited.append(i)
-        queue.append(i)
 
-bfs(1, dic)
-print(len(visited) - 1)
+print(bfs(1, dic))

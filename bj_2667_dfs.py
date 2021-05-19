@@ -12,8 +12,7 @@ def dfs(x, y, cnt):
   for i in range(4):
     nx = x + dx[i]
     ny = y + dy[i]
-    if 0 <= nx < n and 0 <= ny < n:
-      if matrix[nx][ny] == 1:
+    if 0 <= nx < n and 0 <= ny < n and matrix[nx][ny] == 1:
         cnt = dfs(nx, ny, cnt + 1)
   return cnt
 
