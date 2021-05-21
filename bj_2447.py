@@ -1,4 +1,5 @@
 import sys
+write = sys.stdout.write
 
 def star(x, y, size):
   if size == 1:
@@ -15,5 +16,5 @@ star(0, 0, n)
 
 for i in field:
   for j in i:
-    sys.stdout.write(j)
-  sys.stdout.write('\n')
+    write(j)
+  write('\n')
