@@ -5,7 +5,7 @@ n = int(read())
 
 dp = {
   0 : 0,
-  1 : 0,
+  1 : 0
 }
 
 for i in range(2, n + 1):
