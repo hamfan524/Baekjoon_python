@@ -1,0 +1,61 @@
+# 최소 공통 조상 찾기 (LCA) 알고리즘
+# 1. 모든 노드에 대한 깊이(depth)를 계산합니다.
+# 2. 최소 공통 조상을 찾을 두 노드를 확인합니다.
+    # 1) 먼저 두 노드의 깊이(depth)가 동일하도록 거슬러 올라갑니다.
+    # 2) 이후에 부모가 같아질 때까지 반복적으로 두 노드의 부모 방향으로 거슬러 올라갑니다.]
+# 3. 모든 LCA(a,b) 연산에 대하여 2번의 과정을 계속 반복합니다.
+
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10 ** 6)
+length = 21
+
+n = int(input())
+parent = [[0] * length for _ in range(n + 1)]
+visited = [False] * (n + 1)
+d = [0] * (n + 1)
+graph = [[] for _ in range(n + 1)]
+
+for _ in range(n - 1):
+  a, b = map(int, input().split()) 
+  graph[a].append(b)
+  graph[b].append(a)
+
+def dfs(x, depth):
+  visited[x] = True
+  d[x] = depth
+  
+  for node in graph[x]:
+    if visited[node]:
+      continue              
+    parent[node][0] = x     # 우선 바로 위에 있는 부모 정보만 갱신
+    dfs(node, depth + 1)
+
+def set_parent():   # 모든 노드의 전체 부모 관계 갱신하기
+  dfs(1, 0)
+  for i in range(1, length):
+    for j in range(1, n + 1):   #각 노드에 대해 2**i번째 부모 정보 갱신
+      parent[j][i] = parent[parent[j][i-1]][i-1]
+
+def lca(a, b):        #무조건 b의 깊이가 더 깊도록 설정
+  if d[a] > d[b]:
+    a, b = b, a
+  for i in range(length -1, -1, -1):    # a와  b의 깊이가 동일해주도록 설정 
+    if d[b] - d[a] >= 2 ** i:
+      b = parent[b][i]
+  if a == b:
+    return a
+  
+  for i in range(length -1, -1, -1):    # 올라가면서 공통 조상 찾기
+    if parent[a][i] != parent[b][i]:
+      a = parent[a][i]
+      b = parent[b][i]
+  
+  return parent[a][0]
+
+set_parent()
+m = int(input())
+
+for _ in range(m):
+  a, b = map(int, input().split())
+  print(lca(a, b))
