@@ -3,11 +3,17 @@ from heapq import heappush, heappop
 
 input = sys.stdin.readline
 inf = sys.maxsize
-V, E = map(int, input().split())
-k = int(input())
-graph = [[] for _ in range(V + 1)]
-dp = [inf] * (V + 1)
+n = int(input())
+m = int(input())
+graph = [[] for _ in range(n + 1)]
+dp = [inf] * (n + 1)
 heap = []
+
+for _ in range(m):
+    d, a, v = map(int, input().split())
+    graph[d].append([a, v])
+
+d_c, a_c = map(int, input().split())
 
 def dijkstra(start):
     dp[start] = 0
@@ -20,10 +26,5 @@ def dijkstra(start):
                 dp[n_n] = n_w
                 heappush(heap, [n_w, n_n])
 
-for _ in range(E):
-    u, v, w = map(int, input().split())
-    graph[u].append([v, w])
-
-dijkstra(k)
-for i in dp[1:]:
-    print(i if i != inf else "INF")
+dijkstra(d_c)
+print(dp[a_c])
