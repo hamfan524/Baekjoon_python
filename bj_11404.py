@@ -19,5 +19,6 @@ for k in range(n):
                 graph[i][j] = 0
             elif graph[i][j] > graph[i][k] + graph[k][j]:
                 graph[i][j] = graph[i][k] + graph[k][j]
+
 for i in range(n):
     print(*graph[i])
