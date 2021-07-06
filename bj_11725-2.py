@@ -21,8 +21,11 @@ def bfs():
             if parent[i] == 0:
                 parent[i] = node
                 q.append(i)
+
     return parent
 
 bfs()
 
-print(*parent)
+print(parent)
+for i in parent[2:]:
+    print(i)
