@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 sys.setrecursionlimit(10**6)
 
 input = sys.stdin.readline
@@ -27,4 +26,4 @@ while 1:
   except:
     break
 
-postorder(0, len(preorder)-1)
+postorder(0, len(preorder) - 1)
