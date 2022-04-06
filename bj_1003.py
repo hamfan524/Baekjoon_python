@@ -1,22 +1,21 @@
 import sys
-read = sys.stdin.readline
+input = sys.stdin.readline
 
 dp ={
   0 : 0,
-  1 : 1,
-  2 : 1
+  1 : 1
 }
 
-def f(n):
+def fibo(n):
   if n not in dp:
-    dp[n] = f(n - 1) + f(n - 2)
+    dp[n] = fibo(n - 1) + fibo(n - 2)
   return dp[n]
 
-t = int(read())
+t = int(input())
 for _ in range(t):
-  num = int(read())
+  num = int(input())
   if not num:
     print('1 0')
   else:
-    f(num)
+    fibo(num)
     print(dp[num - 1], dp[num])
