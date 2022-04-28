@@ -1,6 +1,5 @@
-
 import sys
-read = sys.stdin.readline
+input = sys.stdin.readline
 
 def dfs(start, dic):
   visited.append(start)
@@ -12,11 +11,11 @@ def dfs(start, dic):
 dic = {}
 visited = []
 
-for i in range(int(read())):
+for i in range(int(input())):
   dic[i + 1] = set()
 
-for _ in range(int(read())):
-  a, b = map(int, read().split())
+for _ in range(int(input())):
+  a, b = map(int, input().split())
   dic[a].add(b)
   dic[b].add(a)
 

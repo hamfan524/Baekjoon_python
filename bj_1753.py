@@ -3,6 +3,7 @@ from heapq import heappush, heappop
 
 input = sys.stdin.readline
 inf = sys.maxsize
+
 V, E = map(int, input().split())
 k = int(input())
 graph = [[] for _ in range(V + 1)]

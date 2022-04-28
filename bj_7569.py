@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-read = sys.stdin.readline
+input = sys.stdin.readline
 
 def bfs(m, n, h, box):
   dx = [1, -1, 0, 0, 0, 0]
@@ -9,17 +9,17 @@ def bfs(m, n, h, box):
 
   days = -1
 
-  while ripe:
+  while q:
     days += 1
-    for _ in range(len(ripe)):
-      x, y, z = ripe.popleft()
+    for _ in range(len(q)):
+      x, y, z = q.popleft()
       for i in range(6):
         nx = x + dx[i]
         ny = y + dy[i]
         nz = z + dz[i]
         if 0 <= nx < h and 0 <= ny < n and 0 <= nz < m and box[nx][ny][nz] == 0:
           box[nx][ny][nz] = 1
-          ripe.append([nx, ny, nz])
+          q.append([nx, ny, nz])
   
   for i in box:
     for j in i:
@@ -28,15 +28,14 @@ def bfs(m, n, h, box):
   return days
 
 
-m, n, h = map(int, read().split())
-box = [[list(map(int, read().split())) for _ in range(n)] for _ in range(h)]
-ripe = deque()
+m, n, h = map(int, input().split())
+box = [[list(map(int, input().split())) for _ in range(n)] for _ in range(h)]
+q = deque()
 
 for i in range(h):
   for j in range(n):
     for k in range(m):
       if box[i][j][k] == 1:
-        ripe.append([i, j, k])
-
+        q.append([i, j, k])
 
 print(bfs(m, n, h, box))
