@@ -1,7 +1,6 @@
 import sys
 
 input = sys.stdin.readline
-inf = sys.maxsize
 
 n = int(input())
 graph = []
