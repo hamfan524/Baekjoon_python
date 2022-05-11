@@ -9,17 +9,17 @@ for _ in range(m):
     a, b = map(int, input().split())
     graph[a][b] = 1
 
-for k in range(n):
-    for i in range(n):
-        for j in range(n):
+for k in range(1, n+1):
+    for i in range(1, n+1):
+        for j in range(1, n+1):
            if graph[i][k] and graph[k][j]:
-               graph[i][k] = 1
+               graph[i][j] = 1
 
-res = 0
-for i in range(n):
+answer = 0
+for i in range(1, n+1):
     t = 0
-    for j in range(n):
+    for j in range(1, n+1):
         t += graph[i][j] + graph[j][i]
     if t == n - 1:
-        res += 1
-print(res)
+        answer += 1
+print(answer)
