@@ -1,5 +1,5 @@
 import sys
-read = sys.stdin.readline
+input = sys.stdin.readline
 
 dic = {
   1 : 1,
@@ -12,7 +12,7 @@ def f(n):
     dic[n] = f(n - 3) + f(n - 2)
   return dic[n]
 
-t = int(read())
+t = int(input())
 for _ in range(t):
-  n = int(read())
+  n = int(input())
   print(f(n))
